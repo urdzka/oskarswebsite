@@ -1,0 +1,118 @@
+/* --- FONT IMPORT --- */
+@import url("https://api.fontshare.com/v2/css?f[]=mori@400,500,700&display=swap");
+
+/* --- TAILWIND --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- THEME VARIABLES --- */
+:root {
+  --bg-color: #f5f5dc;      /* Beige background for light mode */
+  --text-color: #4a4238;   /* Dark brown text for light mode */
+  --muted-text: #8a7e6f;
+  --border-color: #dcd9c3;
+  --grain-opacity: 0.05;
+}
+
+html.dark {
+  --bg-color: #000000;      /* Black background for dark mode */
+  --text-color: #e5e5e5;   /* Light gray text for dark mode */
+  --muted-text: #a3a3a3;
+  --border-color: #262626;
+  --grain-opacity: 0.035;
+}
+
+/* --- BASE STYLES --- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Mori', sans-serif; /* Set Mori as the default font */
+}
+
+body, a, button {
+  cursor: none; /* Custom cursor for all interactive elements */
+}
+
+/* --- ANIMATIONS --- */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--text-color); }
+}
+
+.blinking-cursor {
+  font-weight: 300;
+  animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+/* --- NEW Simplified CSS for the Toggle --- */
+.theme-toggle-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle-input {
+  display: none; /* The checkbox is hidden */
+}
+
+/* This rule moves the switch when the checkbox is checked */
+.theme-toggle-input:checked + .theme-toggle-label .theme-toggle-switch {
+  transform: translateX(30px);
+}
+
+.theme-toggle-label {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Background color for the toggle */
+.dark .theme-toggle-label {
+   background-color: #27272a; /* dark:bg-neutral-800 */
+}
+.light .theme-toggle-label {
+   background-color: #8a7e6f; /* bg-cyan-500 */
+}
+
+/* The sliding circle */
+.theme-toggle-switch {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 9999px;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
