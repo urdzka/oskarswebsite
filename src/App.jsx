@@ -113,8 +113,6 @@ const InteractiveGridBackground = () => {
     }, []);
 
     const gridSize = 50;
-    // We use window.innerWidth and window.innerHeight for fixed elements
-    // to ensure they match the viewport exactly.
     const width = window.innerWidth;
     const height = window.innerHeight;
     const numLinesX = Math.ceil(width / gridSize) + 1;
@@ -142,7 +140,6 @@ const InteractiveGridBackground = () => {
         }
     }
 
-    // Changed h-full to h-screen
     return (
         <svg ref={gridRef} className="fixed top-0 left-0 w-full h-screen z-0">
             <rect width="100%" height="100%" fill={bgColor} />
@@ -225,14 +222,21 @@ const TypingEffect = () => {
     );
 };
 
+// --- [FIXED] MarqueeStripe Component ---
 const MarqueeStripe = ({ onClick, onMouseEnter, onMouseLeave }) => (
-    <div className="marquee-container cursor-none relative w-fullvw py-12 bg-beige-soft dark:bg-neutral-900 text-brown-muted dark:text-neutral-500 whitespace-nowrap overflow-hidden z-10"
-        onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div 
+        // The fix was to replace the problematic "w-fullvw" class with the standard "w-full".
+        className="marquee-container cursor-none relative w-full py-12 bg-beige-soft dark:bg-neutral-900 text-brown-muted dark:text-neutral-500 whitespace-nowrap overflow-hidden z-10"
+        onClick={onClick} 
+        onMouseEnter={onMouseEnter} 
+        onMouseLeave={onMouseLeave}
+    >
         <div className="marquee-content flex text-3xl font-bold uppercase tracking-widest animate-[marquee_25s_linear_infinite]">
             {Array(10).fill("Available for new projects").map((text, i) => <span key={i} className="px-8">{text} &bull;</span>)}
         </div>
     </div>
 );
+
 
 const ContactForm = ({ onMouseEnter, onMouseLeave }) => {
     const handleSubmit = (e) => {
@@ -571,18 +575,19 @@ function AppContent() {
                     />
                 </div>
 
-                <footer className="relative z-10 max-w-3xl mx-auto px-4 pb-16">
-                    <div className="flex items-center justify-between">
-                        <p className="text-sm text-brown-muted dark:text-neutral-600 uppercase">
-                           &copy; {new Date().getFullYear()} Oblikovalsky
-                        </p>
-                        <div className="flex items-center space-x-4">
-                            <a href="mailto:hello@oblikovalsky.xyz" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><EmailIcon /></a>
-                            <a href="#" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><LinkedInIcon /></a>
-                            <a href="#" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><GitHubIcon /></a>
-                        </div>
-                    </div>
-                </footer>
+               <footer className="relative z-10 max-w-3xl mx-auto px-4 pb-16">
+                   <div className="flex items-center justify-between">
+                       <p className="text-sm text-brown-muted dark:text-neutral-600 uppercase">
+                          &copy; {new Date().getFullYear()} Oblikovalsky
+                       </p>
+                       <div className="flex items-center space-x-4">
+                           {/* [FIXED] Wrapped handleMouseEnter in arrow functions */}
+                           <a href="mailto:hello@oblikovalsky.xyz" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><EmailIcon /></a>
+                           <a href="#" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><LinkedInIcon /></a>
+                           <a href="#" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><GitHubIcon /></a>
+                       </div>
+                   </div>
+               </footer>
             </div>
         </>
     );
