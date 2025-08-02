@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef, useContext, createContext } from 'react';
 
 // --- Reference the icon from the public directory ---
-const nightModeIcon = '/assets/night-mode.png';
+const nightModeIcon = './assets/night-mode.png';
 
 // --- Other Asset Placeholders ---
 const zhaMidvaCoverSmall = "https://placehold.co/800x600/1a1a1a/ffffff?text=ZHA+Music+1";
 const zhaPrinc3Pokoncna = "https://placehold.co/600x800/2a2a2a/ffffff?text=ZHA+Music+2";
 const zhaPrinc2Pokoncna = "https://placehold.co/600x800/0a0a0a/ffffff?text=ZHA+Music+3";
 const zhaPrinc1 = "https://placehold.co/800x600/1a1a1a/ffffff?text=ZHA+Music+4";
+
+const indexMagazine = '/assets/pokvirjenka/index-magazine.html';
 
 // --- Theme Management ---
 const ThemeContext = createContext(null);
@@ -480,7 +482,7 @@ const PokvirjenkaPage = ({ project, onBack, onMouseEnter, onMouseLeave }) => {
                     onMouseLeave={onMouseLeave}
                 >
                     <iframe
-                        src="/pokvirjenka/index-magazine.html"
+                        src="assets/pokvirjenka/index-magazine.html"
                         title={project.title}
                         className="w-full h-full border-0"
                     />
