@@ -116,3 +116,31 @@ body, a, button {
   align-items: center;
   justify-content: center;
 }
+
+/*
+  Defines the animation for the pulsating/blinking effect.
+  It transitions the opacity from 1 (visible) to 0 (invisible) and back.
+*/
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/*
+  Applies the 'blink' animation to the cursor element.
+  - It runs the animation over 1 second.
+  - 'ease-in-out' creates a smooth pulsating feel.
+  - 'infinite' ensures the animation loops forever.
+*/
+.blinking-cursor {
+  animation: blink 1s ease-in-out infinite;
+}
+
+/* In your CSS file (e.g., globals.css or a module) */
+.no-cursor {
+  cursor: none;
+}
