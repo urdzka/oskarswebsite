@@ -1,5 +1,3 @@
-// src/pages/HomePage.jsx
-
 import React from 'react';
 import { TypingEffect } from '../components/TypingEffect';
 import { GlassRippleButton } from '../components/GlassRippleButton';
@@ -38,12 +36,14 @@ The visual style is characterized by *geometric precision*, bold typography, and
 
 > *"The Artist is No Longer an Artist."* - Avgust Černigoj. This project captures the spirit of an era where art sought to actively participate in the construction of a new world.`,
             type: 'animation',
-            images: [ cernigojImage1, cernigojImage2, umetnikCloseup ],
-            animation: {
-                path: '/assets/animacija',
-                frameCount: 456,
-                fileType: 'png',
-                frameRate: 24
+                        images: [ cernigojImage1, cernigojImage2, umetnikCloseup ],
+                        animation: {
+                            // Update the path to your new optimized directory
+                            path: '/assets/animacija/optimized',
+                            frameCount: 456,
+                            // Update the file type to 'webp'
+                            fileType: 'webp',
+                            frameRate: 24
             }
          },
          {
@@ -66,7 +66,7 @@ This project successfully leveraged a multi-channel approach to deliver a consis
             id: 'zha-music',
             title: "ZHA MUSIC",
             description: "PHOTOGRAPHY",
-            year: "2024",
+            year: "2023",
             longDescription: `A series of promotional photographs created for the musician **ZHA**. The goal was to capture the artist's unique aesthetic and energetic stage presence, which blends *synthwave influences* with modern electronic beats.
 
 The photo shoot took place in a studio environment using dynamic lighting to create a sense of movement and depth. The final images were post-processed with a moody, high-contrast style to match the artist's brand identity. These photos were used for:
@@ -76,13 +76,13 @@ The photo shoot took place in a studio environment using dynamic lighting to cre
 * Press kits and concert posters
 
 The collaboration successfully translated ZHA's auditory experience into a compelling visual narrative that resonates with their audience.`,
-            images: [zhaMidvaCoverSmall]
+            images: ["/assets/portfolio/IMG_6398-Edit-2 - Copy.jpg", "/assets/portfolio/zha-midva-siroka-small-1.jpg", "/assets/portfolio/zha-midva-siroka-small.jpg", "/assets/portfolio/ZHA-princ1.jpg", "/assets/portfolio/ZHA-princ2-pokoncna - Copy.jpg", "/assets/portfolio/IMG_6965 - Copy.jpg"]
          },
          {
             id: 'synthwave',
             title: "SYNTHWAVE",
             description: "VISUALS",
-            year: "2024",
+            year: "2022",
             longDescription: `This project is a series of promotional visuals inspired by the **synthwave genre**, combining photography, digital art, and motion graphics to create a complete visual identity. The goal was to capture the genre's unique aesthetic, which blends nostalgic 80s themes with futuristic electronic elements.
 
 The project features a striking static visual and a dynamic, rhythm-driven motion piece that explores the relationship between tempo and visual movement. These visuals are moody, high-contrast, and dynamic, created to be used for:
@@ -99,7 +99,7 @@ The project successfully translates the synthwave auditory experience into a com
             id: 'krik',
             title: "KRIK - PRVI GLAS",
             description: "EVENT DESIGN",
-            year: "2024",
+            year: "2022",
             longDescription: `The original project, **KRIK: PRVI GLAS**, is an author's initiative that encourages dialogue about sexual harassment—a topic that is often present, normalized, and overlooked in society. The project addresses the difficulty of identifying when boundaries are crossed and asks critical questions about how to talk about abuse and seek help.
 
 The performance and accompanying research strive to destigmatize victims of sexual abuse and emphasize the urgency of open dialogue. It presents viewers with ethical questions and encourages them to reflect on their own experiences.
@@ -119,7 +119,7 @@ This multi-faceted approach aims to create a safe space for dialogue and foster 
         <>
             <header className="mb-16">
                 <TypingEffect />
-                <p className="text-xl text-brown-text/80 dark:text-neutral-300 mt-4 tracking-wide">
+                <p className="text-lg md:text-xl text-brown-text/80 dark:text-neutral-300 mt-4 tracking-wide">
                     A dynamic and versatile graphic designer with a strong foundation in visual communication and media technology.
                 </p>
                 <p className="text-base mt-4 leading-relaxed text-brown-muted dark:text-neutral-400">
@@ -128,7 +128,7 @@ This multi-faceted approach aims to create a safe space for dialogue and foster 
                 <div className="mt-8">
                     <GlassRippleButton
                         onClick={onContactClick}
-                        onMouseEnter={() => handleMouseEnter('Get in touch', 60)}
+                        onMouseEnter={() => handleMouseEnter('Get in touch', 80)}
                         onMouseLeave={handleMouseLeave}
                     >
                         Get in touch
@@ -146,7 +146,7 @@ This multi-faceted approach aims to create a safe space for dialogue and foster 
                     >
                         <div className="flex justify-between items-center px-4">
                             <div className="flex-grow">
-                                <h3 className="text-3xl font-bold text-brown-text dark:text-neutral-200">{item.title}</h3>
+                                <h3 className="text-2xl md:text-3xl font-bold text-brown-text dark:text-neutral-200">{item.title}</h3>
                                 <div className="flex items-center gap-x-4 mt-2 text-sm uppercase tracking-widest text-brown-muted dark:text-neutral-500">
                                     <span>{item.description}</span><span>{item.year}</span>
                                 </div>

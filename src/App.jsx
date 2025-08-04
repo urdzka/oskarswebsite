@@ -113,7 +113,7 @@ function AppContent() {
                        </p>
                        <div className="flex items-center space-x-4">
                            <a href="mailto:oskar@oblikoval.xyz" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><EmailIcon /></a>
-                           <a href="https://www.linkedin.com" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><LinkedInIcon /></a>
+                           <a href="https://www.linkedin.com/in/oskar-miketi%C4%8D-8ba29a217/" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><LinkedInIcon /></a>
                            <a href="https://www.github.com" className="text-brown-muted dark:text-neutral-500 hover:text-brown-text dark:hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter()} onMouseLeave={handleMouseLeave}><GitHubIcon /></a>
                        </div>
                    </div>

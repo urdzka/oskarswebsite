@@ -26,16 +26,23 @@ html.dark {
 /* --- BASE STYLES --- */
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Mori', sans-serif; /* Set Mori as the default font */
+  font-family: 'Mori', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body, a, button {
-  cursor: none; /* Custom cursor for all interactive elements */
+body,
+a,
+button,
+[role="button"],
+[onclick],
+.cursor-pointer {
+  cursor: none !important;
 }
 
 /* --- ANIMATIONS --- */
@@ -68,7 +75,7 @@ body, a, button {
 }
 
 
-/* --- NEW Simplified CSS for the Toggle --- */
+/* --- THEME TOGGLE STYLES --- */
 .theme-toggle-button {
   position: relative;
   display: flex;
@@ -77,10 +84,9 @@ body, a, button {
 }
 
 .theme-toggle-input {
-  display: none; /* The checkbox is hidden */
+  display: none;
 }
 
-/* This rule moves the switch when the checkbox is checked */
 .theme-toggle-input:checked + .theme-toggle-label .theme-toggle-switch {
   transform: translateX(30px);
 }
@@ -94,15 +100,14 @@ body, a, button {
   transition: background-color 0.3s ease;
 }
 
-/* Background color for the toggle */
 .dark .theme-toggle-label {
-   background-color: #27272a; /* dark:bg-neutral-800 */
-}
-.light .theme-toggle-label {
-   background-color: #8a7e6f; /* bg-cyan-500 */
+   background-color: #27272a;
 }
 
-/* The sliding circle */
+.light .theme-toggle-label {
+   background-color: var(--muted-text);
+}
+
 .theme-toggle-switch {
   position: absolute;
   top: 3px;
@@ -117,30 +122,74 @@ body, a, button {
   justify-content: center;
 }
 
-/*
-  Defines the animation for the pulsating/blinking effect.
-  It transitions the opacity from 1 (visible) to 0 (invisible) and back.
-*/
+.blinking-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  width: 1ch;
+  animation: blink 1s step-start infinite;
+}
+
 @keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
   50% {
     opacity: 0;
   }
 }
 
-/*
-  Applies the 'blink' animation to the cursor element.
-  - It runs the animation over 1 second.
-  - 'ease-in-out' creates a smooth pulsating feel.
-  - 'infinite' ensures the animation loops forever.
-*/
-.blinking-cursor {
-  animation: blink 1s ease-in-out infinite;
+/* Add this to your main CSS file */
+.grainy-background {
+  position: relative;
 }
 
-/* In your CSS file (e.g., globals.css or a module) */
-.no-cursor {
-  cursor: none;
+.grainy-background::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwiPgoJPHR1cmJ1bGVuY2UgZmlsdGVyPSJ1cmwoI2ZpbHRlcjAwNykgdHVyYnVsZW5jZSAxLjcwODMgZnJhY3RhbE5vaXNlIDAuNTA4MyIgc3RpdGNoVGlsZXNFbmFibGVkPSJ0cnVlIj4KCTxhbmltYXRlIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0iYmFzZUZyZXF1ZW5jeSIgZnJvbT0iLjE0IC4wNSIgdG89Ii4wOCAuMDA4IiBkZWMsIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPgo8L3R1cmJ1bGVuY2U+CjwvZmlsdGVyPgoJPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0icmdoYSgwLDAsMCwwLjA1KSIgZmlsdGVyPSJ1cmwoI2ZpbHRlcmNhY2hlKSkiPjwvcmVjdD4KPC9zdmc+Cg==");
+  pointer-events: none;
+  animation: grain-animation 1s steps(10) infinite;
 }
+
+@keyframes grain-animation {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -10%); }
+  40% { transform: translate(-5%, -15%); }
+  50% { transform: translate(-15%, 5%); }
+  60% { transform: translate(7%, 10%); }
+  70% { transform: translate(5%, 15%); }
+  80% { transform: translate(-10%, 15%); }
+  90% { transform: translate(15%, 5%); }
+}
+
+/* Add this to your main CSS file */
+.portfolio-item-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item-ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: currentColor; /* Matches the text color */
+    opacity: 0.1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease-out, height 0.3s ease-out, opacity 0.3s ease-out;
+    pointer-events: none;
+}
+
+.portfolio-item-ripple:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 0.2;
+}
+
+

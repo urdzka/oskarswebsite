@@ -1,5 +1,3 @@
-// src/components/Lightbox.jsx
-
 import React, { useState, useEffect } from 'react';
 
 export const Lightbox = ({ src, onClose }) => {

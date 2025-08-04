@@ -1,24 +1,34 @@
-// MouseFollower.jsx
+// src/components/MouseFollower.jsx
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../App';
 
 export const MouseFollower = ({ size = 20, text = "" }) => {
     const { theme } = useTheme();
 
     const cursorRef = useRef(null);
-    const mousePos = useRef({ x: 0, y: 0 });
+    const posRef = useRef({ x: 0, y: 0 });
     const cursorPos = useRef({ x: 0, y: 0 });
     const animationFrameId = useRef(null);
     const lerpFactor = 0.2;
 
     useEffect(() => {
-        const handleMouseMove = (e) => {
-            mousePos.current = { x: e.clientX, y: e.clientY };
+        const handleEvent = (e) => {
+            let clientX, clientY;
+
+            // Check if the event is a touch event or a mouse event
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            posRef.current = { x: clientX, y: clientY };
         };
 
         const animate = () => {
-            const { x: targetX, y: targetY } = mousePos.current;
+            const { x: targetX, y: targetY } = posRef.current;
             const { x: currentX, y: currentY } = cursorPos.current;
 
             cursorPos.current.x += (targetX - currentX) * lerpFactor;
@@ -31,19 +41,23 @@ export const MouseFollower = ({ size = 20, text = "" }) => {
             animationFrameId.current = requestAnimationFrame(animate);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', handleEvent);
+        window.addEventListener('touchmove', handleEvent);
         animationFrameId.current = requestAnimationFrame(animate);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mousemove', handleEvent);
+            window.removeEventListener('touchmove', handleEvent);
             cancelAnimationFrame(animationFrameId.current);
         };
     }, []);
 
-    const lightModeBg = 'rgba(120, 117, 105, 0.2)';
+    const lightModeBg = 'rgba(120, 117, 105, 0.5)';
     const darkModeBg = 'rgba(0, 255, 119, 0.15)';
-    const lightModeBorder = '#a3a198';
+    const lightModeBorder = '#4a4238';
     const darkModeBorder = '#0fa';
+    const lightModeTextColor = 'text-beige-soft';
+    const darkModeTextColor = 'text-white';
 
     return (
         <div
@@ -58,7 +72,7 @@ export const MouseFollower = ({ size = 20, text = "" }) => {
             }}
         >
             {text && (
-                 <span className={theme === 'light' ? 'text-brown-text font-medium' : 'text-white font-medium'}>
+                 <span className={theme === 'light' ? lightModeTextColor : darkModeTextColor + ' font-medium'}>
                     {text}
                 </span>
             )}

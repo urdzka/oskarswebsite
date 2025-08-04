@@ -2,6 +2,7 @@
 module.exports = {
   darkMode: 'class', // Enable class-based dark mode
   content: [
+    "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
@@ -28,17 +29,6 @@ module.exports = {
         display: ['Playfair Display', 'serif'],
       },
     },
-  },
-  plugins: [],
-}
-
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
   },
   plugins: [],
 }

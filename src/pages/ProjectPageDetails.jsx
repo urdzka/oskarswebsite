@@ -1,5 +1,3 @@
-// src/pages/ProjectDetailPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { GlassRippleButton } from '../components/GlassRippleButton';
@@ -127,7 +125,6 @@ export const ProjectDetailPage = ({ project, onBack, onMouseEnter, onMouseLeave 
     };
 
     const renderMediaLibrary = () => {
-        // Render a single image for the 'zha-music' project
         if (project.id === 'zha-music' && project.images.length === 1) {
             return (
                 <div className="max-w-3xl mx-auto">
@@ -143,17 +140,12 @@ export const ProjectDetailPage = ({ project, onBack, onMouseEnter, onMouseLeave 
             );
         }
 
-        // Conditionally apply a different grid for the 'cernigoj-animacija' project
-        const galleryGridClass = project.id === 'cernigoj-animacija'
-            ? "grid-cols-1 sm:grid-cols-3"
-            : "grid-cols-1 sm:grid-cols-2";
-
         return (
-            <div className={`grid ${galleryGridClass} gap-4 max-w-3xl mx-auto`}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
                 {project.images.map((image, index) => (
                     <div
                         key={index}
-                        className="group relative cursor-pointer overflow-hidden rounded-lg"
+                        className="group relative cursor-pointer overflow-hidden rounded-lg bg-neutral-800"
                         style={{ aspectRatio: '856 / 595' }}
                         onClick={() => openModal(index)}
                         onMouseEnter={() => {
